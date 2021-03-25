@@ -22,12 +22,12 @@ export function  SubscribeButton({priceId}: SubscribeButtonProps){
 
       const { sessionId} = response.data;
 
-      const stripe = await getStripeJs();
+      const stripe = await getStripeJs()
 
-      stripe.redirectToCheckout(sessionId);
+      await stripe.redirectToCheckout({sessionId})
 
     } catch(err){ 
-        alert(err.message);
+        alert(err.message); 
     }
   }
 
