@@ -11,7 +11,7 @@ interface SubscribeButtonProps{
 export function  SubscribeButton({priceId}: SubscribeButtonProps){
   const [session] = useSession();
 
-  async function handleSubscriber(){
+  async function handleSubscribe(){
     if(!session){
       signIn('github');
       return;
@@ -35,7 +35,7 @@ export function  SubscribeButton({priceId}: SubscribeButtonProps){
     <button 
         type="button" 
         className={styles.subscribeButton}
-        onClick={() => handleSubscriber()}
+        onClick={handleSubscribe}
      >
       Subscribe now
     </button>
