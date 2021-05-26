@@ -8,16 +8,20 @@
     "start": "next start"
   },
   "dependencies": {
+    "@prismicio/client": "^4.0.0",
     "@stripe/stripe-js": "^1.13.2",
+    "add": "^2.0.6",
     "axios": "^0.21.1",
     "faunadb": "4.1.1",
     "next": "10.0.9",
-    "next-auth": "^3.13.2",
+    "next-auth": "^3.13.1",
+    "prismic-dom": "^2.2.5",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-icons": "^4.2.0",
     "sass": "^1.32.8",
-    "stripe": "^8.139.0"
+    "stripe": "^8.139.0",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "@testing-library/dom": "^7.31.0",
@@ -25,6 +29,7 @@
     "@testing-library/react": "^11.2.7",
     "@types/next-auth": "3.7.1",
     "@types/node": "^14.14.35",
+    "@types/prismic-dom": "^2.1.1",
     "@types/react": "^17.0.3",
     "babel-jest": "^27.0.1",
     "jest": "^27.0.1",
