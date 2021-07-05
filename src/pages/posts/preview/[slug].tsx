@@ -19,61 +19,66 @@ interface PostPreviewProps {
   }
 }
 
-export default function PostPreview({post} : PostPreviewProps){
+type Params = {
+  params: {
+    slug: string
+  }
+}
+
+
+export default function PostPreview({ post }: PostPreviewProps) {
   const [session] = useSession()
   const router = useRouter()
 
   useEffect(() => {
-    if(session?.activeSubscription){
-        router.push(`/posts/${post.slug}`)
+    if (session?.activeSubscription) {
+      router.push(`/posts/${post.slug}`)
     }
   }, [session])
 
   return (
     <>
       <Head>
-          <title>{post.title} | Ignews</title>
-       </Head>
+        <title>{post.title} | Ignews</title>
+      </Head>
 
-          <main className={styles.container}>
-            <article className={styles.post}>
-              <h1>{post.title}</h1>
-              <time>{post.updatedAt}</time>
-              <div 
-                  className={`${styles.postContainer} ${styles.previewContent}`}
-                  dangerouslySetInnerHTML ={{ __html: post.content}} 
-              />
+      <main className={styles.container}>
+        <article className={styles.post}>
+          <h1>{post.title}</h1>
+          <time>{post.updatedAt}</time>
+          <div
+            className={`${styles.postContainer} ${styles.previewContent}`}
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
 
 
-              <div className={styles.continueReading}>
-                Warning continuer reading? 
-                <Link href="/">
-                  <a href="">Subscribe now 🤗!</a>
-                </Link>
-              </div>
-            </article>
-          </main>
+          <div className={styles.continueReading}>
+            Warning continuer reading?
+            <Link href="/">
+              <a href="">Subscribe now 🤗!</a>
+            </Link>
+          </div>
+        </article>
+      </main>
     </>
   )
 }
 
-export const getStaticPaths: GetStaticPaths = () =>{
-
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [
-      {params: 'como-criar-e-manter-um-blog-no-medium'}
-    ],
+    paths: [],
     fallback: 'blocking'
   }
 }
 
-export const getStaticProps : GetStaticProps = async ({  params }) => {
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params;
 
   const prismic = getPrismicClient()
 
   const response = await prismic.getByUID('posts', String(slug), {})
-  
+
   const post = {
     slug,
     title: RichText.asText(response.data.title),
